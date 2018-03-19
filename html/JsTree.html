@@ -1,0 +1,102 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+    <link rel="stylesheet" type="text/css" href="https://cdn.bootcss.com/bootstrap/3.3.7/css/bootstrap.css" />
+    <link rel="stylesheet" type="text/css" href="../css/style.css" />
+</head>
+<body>
+<div class="subWrapper">
+    <h2>JsTree</h2>
+    <h3>起步</h3>
+    <p>jsTree是jquery插件，提供交互式树。易扩展，可编辑和可配置，它支持HTML和JSON数据源和AJAX加载。</p>
+    <p>下载JsTree并引入脚本。需要引入三个文件，1.jQuery文件；2.jstree css文件；3.jstree js文件</p>
+    <pre>&lt;script src="//cdnjs.cloudflare.com/ajax/libs/jquery/3.1.1/jquery.min.js"&gt;&lt;/script&gt;
+&lt;link rel="stylesheet" href="//cdnjs.cloudflare.com/ajax/libs/jstree/3.3.3/themes/default/style.min.css" /&gt;
+&lt;script src="//cdnjs.cloudflare.com/ajax/libs/jstree/3.3.3/jstree.min.js"&gt;&lt;/script&gt;</pre>
+    <p>下载到本地后可使用本地路径</p>
+
+    <h3>重点</h3>
+    <h4 class="text-primary">1.创建一个树</h4>
+    <p>在HTML中，设置一个容器，这是你想让树出现的元素。</p>
+    <pre>&lt;div id="jstree_demo_div"&gt;&lt;/div&gt;</pre>
+    <p>一旦DOM准备就绪，您就可以开始创建jstree实例。</p>
+    <pre>$(function () { $('#jstree_demo_div').jstree(); });</pre>
+
+    <h4 class="text-primary">2.定义树</h4>
+    <dl>
+        <dt>1.数组/json数据定义树</dt>
+        <dd>
+            <p>数组定义树</p>
+            <pre>&lt;div id="jstree_demo_div"&gt;&lt;/div&gt;
+&lt;script&gt;
+    $(function() {
+        $('#jstree_demo_div').jstree({
+            'core' : {
+                'data' : [
+                    { "text" : "Root node", "children" : [
+                            { "text" : "Child node 1" },
+                            { "text" : "Child node 2" }
+                        ]
+                    }
+                ]
+            }
+        });
+    });
+&lt;/script&gt;</pre>
+            <p>json数据的固定格式</p>
+            <p>提供的JSON数据必须符合一定的格式, 每个对象对应一个节点,如果该节点有子节点，还需要提供children属性。children属性是一个相同格式的对象数组。</p>
+            <pre>$('#jstree_demo_div').jstree({ 'core' : {
+    'data' : [
+       'Simple root node',
+       {
+         'text' : 'Root node 2',
+         'state' : {
+           'opened' : true,<span class="text-primary">//打开节点</span>
+           'selected' : true<span class="text-primary">//选中状态</span>
+         },
+         'children' : [
+           { 'text' : 'Child 1' },
+           'Child 2'
+         ]
+      }
+    ]
+} });</pre>
+        </dd>
+
+        <dt>2.Ajax和lazy loading（懒加载）定义树</dt>
+        <dd>
+            <pre>&lt;div id="jstree_demo_div"&gt;&lt;/div&gt;
+&lt;script&gt;
+$(function() {
+    $('#jstree_demo_div').jstree({
+        'core' : {
+            'data' : {
+                "url" : "//www.jstree.com/fiddle/",
+                "dataType" : "json" ,
+            }
+        }
+    });
+});
+&lt;/script&gt;</pre>
+            <p>后台返回数据：</p>
+            <pre>[{
+  "id":1,"text":"Root node","children":[
+    {"id":2,"text":"Child node 1"},
+    {"id":3,"text":"Child node 2"}
+  ]
+}]</pre>
+            <p>Lazy loading(懒加载)定义树</p>
+            <p>当有大量的数据展示, 而一个请求会很占资源的时候. Lazy loading可以更快速的加载数据 - jstree 会在用户浏览到的时候发送AJAX请求获取节点数据.</p>
+            <pre></pre>
+        </dd>
+    </dl>
+
+    <h4 class="text-primary">3.jsTree常用方法</h4>
+    <p></p>
+    <p style="white-space:pre-line"></p>
+
+</div>
+</body>
+</html>

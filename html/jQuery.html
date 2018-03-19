@@ -1,0 +1,149 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+    <link rel="stylesheet" type="text/css" href="https://cdn.bootcss.com/bootstrap/3.3.7/css/bootstrap.css" />
+    <link rel="stylesheet" type="text/css" href="../css/style.css" />
+</head>
+<body>
+<div class="subWrapper">
+    <h2>jQuery <small>JavaScript 库</small></h2>
+    <h3>起步</h3>
+    <p>JavaScript基础库，其他组件必需的依赖库。当前维护版本3.x，需要IE9+支持，对于IE8等较旧的浏览器，需使用jQuery 1.12。</p>
+    <pre>
+        <span>&lt;!DOCTYPE html&gt;</span>
+        <span>&lt;html lang="en"&gt;</span>
+        <span>&lt;head&gt;</span>
+          <span>&lt;meta charset="UTF-8"&gt;</span>
+          <span>&lt;title&gt;Kero Getting Started&lt;/title&gt;</span>
+        <span>&lt;/head&gt;</span>
+        <span>&lt;/body&gt;</span>
+
+            <span>//直接在body中引入script标签即可</span>
+          <span>&lt;script src="http://libs.baidu.com/jquery/2.0.0/jquery.js"&gt;&lt;/script&gt;</span>
+        <span>&lt;/body&gt;</span>
+        <span>&lt;/html&gt;</span>
+    </pre>
+    <h3>重点</h3>
+    <h4 class="text-primary">1.jquery对象和DOM对象的互相转换</h4>
+    <pre>&lt;div id="box"&gt;&lt;/div&gt;</pre>
+    <p>jquery对象==>dom对象</p>
+    <pre>var aBox = $("#box")[0];<br/>aBox.innerHTML = "可以使用原生js的dom操作方法";</pre>
+    <p>dom对象==>jquery对象</p>
+    <pre>var aBox = document.getElementById("box");<br/>var $aBox = $(aBox);<br/>$aBox.html("可以使用jquery的dom操作方法");</pre>
+
+    <h4 class="text-primary">2.jQuery选择器</h4>
+    <table class="table table-bordered">
+        <tr class="success">
+            <th>语法</th>
+            <th>举例</th>
+            <th>描述</th>
+        </tr>
+        <tr>
+            <td>#id选择器</td>
+            <td>$("#hello")</td>
+            <td>匹配出id为'hello'的元素集合</td>
+        </tr>
+        <tr>
+            <td>.class选择器</td>
+            <td>$(".aClass")</td>
+            <td>匹配出class名为'aClass'的元素集合</td>
+        </tr>
+        <tr>
+            <td>Element</td>
+            <td>$("div")</td>
+            <td>匹配出页面中所有div的元素集合</td>
+        </tr>
+        <tr>
+            <td>层级选择器</td>
+            <td>$("div p span")</td>
+            <td>匹配出div下的p标签下的span标签的元素集合</td>
+        </tr>
+        <tr>
+            <td>属性选择器</td>
+            <td>$("input[name='newsletter']")</td>
+            <td>匹配出name名为'newsletter'的表单元素集合</td>
+        </tr>
+        <tr>
+            <td>:nth-child() 选择器</td>
+            <td>$("p:nth-child(3)")</td>
+            <td>选取属于其父元素的第三个子元素的每个p元素</td>
+        </tr>
+        <tr>
+            <td>表单选择器</td>
+            <td>$(":input")</td>
+            <td>匹配所有 input, textarea, select 和 button 元素</td>
+        </tr>
+    </table>
+    <h5 class="text-success">#jQuery选择器更详细的使用方法请参考</h5>
+    <p>菜鸟教程：<a href="http://www.runoob.com/jquery/jquery-ref-selectors.html" target="_Blank">http://www.runoob.com/jquery/jquery-ref-selectors.html</a></p>
+
+    <h4 class="text-primary">3.jQuery事件</h4>
+    <p>在 jQuery 中，大多数 DOM 事件都有一个等效的 jQuery 方法。</p>
+    <pre>$("p").click(function(){<br/> // 动作触发后执行的代码!!<br/>});</pre>
+    <p>常用的事件有：click点击事件、focus得焦事件、blur失焦事件、change事件等</p>
+    <h5 class="text-success">#jQuery事件更详细的使用方法请参考</h5>
+    <p>菜鸟教程：<a href="http://www.runoob.com/jquery/jquery-ref-events.html" target="_Blank">http://www.runoob.com/jquery/jquery-ref-events.html</a></p>
+
+    <h4 class="text-primary">4.jQuery Ajax</h4>
+    <p>AJAX 是与服务器交换数据的技术，它在不重载全部页面的情况下，实现了对部分网页的更新。</p>
+    <p>jQuery 提供多个与 AJAX 有关的方法。最常用的是$.ajax()方法</p>
+    <pre>$.ajax({
+        url:"demo_test.json",
+        async:true,  //是否异步处理，默认true
+        type:"POST",  //请求方式：GET/POST
+        data:"name=admin&age=18",  //要发送到服务器的数据,可以写在这里，也可以用地址栏传参的形式拼接在URL后面
+        //data:{"name":"admin","age":"18"},  //另一种写法
+        dataType:"json",  //预期服务器相应的数据类型
+        success:function(data){
+            //...请求到的数据以及操作
+        },
+        error:function(){
+            //...请求失败回调
+        }<br/>});</pre>
+
+    <h5 class="text-success">#jQuery Ajax更详细的使用方法请参考</h5>
+    <p>$.ajax()：<a href="http://www.runoob.com/jquery/ajax-ajax.html" target="_Blank">http://www.runoob.com/jquery/ajax-ajax.html</a></p>
+    <p>jQuery AJAX 方法：<a href="http://www.runoob.com/jquery/jquery-ref-ajax.html" target="_Blank">http://www.runoob.com/jquery/jquery-ref-ajax.html</a></p>
+
+
+    <h3>常见问题整理</h3>
+    <dl>
+        <dt>1.深度克隆和浅度克隆</dt>
+        <dd>
+            <pre>var o = {a: [1]};</pre>
+            <p>浅拷贝</p>
+            <pre>var o1 = $.extend({}, o);<br/>console.log(o1.a === o.a);  // true</pre>
+            <p>深拷贝</p>
+            <pre>var o2 = $.extend(true, {}, o);<br/>console.log(o2.a === o.a);  //false</pre>
+        </dd>
+        <dt>2.jquery绑定的事件多次执行</dt>
+        <dd>
+            <p>当使用on绑定的事件多次加载后（如写在函数或者其他绑定事件之中）触发时会多次执行</p>
+            <p>解决办法：在每次绑定事件之前，对该事件解绑，也就是 $(".test-btn").off("click")</p>
+        </dd>
+        <dt>3.动态生成的标签绑定click等方法不生效</dt>
+        <dd>
+            <p>原因是动态生成的标签，jQuery选择器无法找到</p>
+            <p>解决办法：使用事件委托，即用on方法把事件委托到父元素上（此元素没有被动态生成）</p>
+            <p>动态生成的class为<mark>.subEle</mark>的标签的点击事件</p>
+            <pre>$(".wapper").on("click",".subEle",function(){
+             //...<br/>})</pre>
+        </dd>
+    </dl>
+
+    <h3>CDN</h3>
+    <p>jQuery官网：<code>https://code.jquery.com/jquery-3.3.1.min.js</code></p>
+    <p>百度：<code>http://apps.bdimg.com/libs/jquery/2.1.4/jquery.min.js</code></p>
+    <p>BootStrap：<code>https://cdn.bootcss.com/jquery/3.3.1/jquery.min.js</code></p>
+
+    <h3>参考网址</h3>
+    <p>官方网站：<a href="https://jquery.com/" target="_Blank">https://jquery.com/</a></p>
+    <p>菜鸟教程：<a href="http://www.runoob.com/jquery/" target="_Blank">http://www.runoob.com/jquery/</a></p>
+    <p>jquery中文网：<a href="https://www.jquery123.com/" target="_Blank">https://www.jquery123.com/</a></p>
+</div>
+
+
+</body>
+</html>

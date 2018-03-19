@@ -1,0 +1,315 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+    <link rel="stylesheet" type="text/css" href="https://cdn.bootcss.com/bootstrap/3.3.7/css/bootstrap.css" />
+    <link rel="stylesheet" type="text/css" href="../css/style.css" />
+</head>
+<body>
+<div class="subWrapper">
+    <h2>Bootstrap <small>UI 库</small></h2>
+    <h3>起步</h3>
+    <p>Bootstrap是基于jQuery的构建响应式网站框架工具包，主要用于界面UI的构建。支持IE8-9，但支持不完整</p>
+    <p>合理整理的3.0版本，最新版本是4.0，不支持IE9及以下的浏览器，使用了flexbox布局</p>
+    <h3>重点</h3>
+    <h4 class="text-primary">1.栅格系统</h4>
+    <p>Bootstrap 提供了一套响应式、移动设备优先的流式栅格系统，随着屏幕或视口（viewport）尺寸的增加，系统会自动分为最多12列。</p>
+    <p>通过给子元素加上相应的class，控制其水平所占的空间大小</p>
+    <p>lg、md、sm这些是通过媒体查询技术实现不同分辨率尺寸的屏幕下使用不同样式</p>
+    <table class="table table-bordered">
+        <tr class="success">
+            <th>屏幕尺寸</th>
+            <th>.container 最大宽度</th>
+            <th>类前缀</th>
+        </tr>
+        <tr>
+            <td>超小屏幕 手机 (<768px)可以识别</td>
+            <td>None （自动）</td>
+            <td>.col-xs-</td>
+        </tr>
+        <tr>
+            <td>小屏幕 平板 (≥768px)可以识别</td>
+            <td>750px</td>
+            <td>.col-sm-</td>
+        </tr>
+        <tr>
+            <td>中等屏幕 桌面显示器 (≥992px)</td>
+            <td>970px</td>
+            <td>.col-md-</td>
+        </tr>
+        <tr>
+            <td>大屏幕 大桌面显示器 (≥1200px)</td>
+            <td>1170px</td>
+            <td>.col-lg-</td>
+        </tr>
+    </table>
+    <div class="row p10">
+        <div class="col-md-1 border">.col-md-1</div>
+        <div class="col-md-1 border">.col-md-1</div>
+        <div class="col-md-1 border">.col-md-1</div>
+        <div class="col-md-1 border">.col-md-1</div>
+        <div class="col-md-1 border">.col-md-1</div>
+        <div class="col-md-1 border">.col-md-1</div>
+        <div class="col-md-1 border">.col-md-1</div>
+        <div class="col-md-1 border">.col-md-1</div>
+        <div class="col-md-1 border">.col-md-1</div>
+        <div class="col-md-1 border">.col-md-1</div>
+        <div class="col-md-1 border">.col-md-1</div>
+        <div class="col-md-1 border">.col-md-1</div>
+    </div>
+    <div class="row p10">
+        <div class="col-md-8 border">.col-md-8</div>
+        <div class="col-md-4 border">.col-md-4</div>
+    </div>
+    <div class="row p10">
+        <div class="col-md-4 border">.col-md-4</div>
+        <div class="col-md-4 border">.col-md-4</div>
+        <div class="col-md-4 border">.col-md-4</div>
+    </div>
+    <div class="row p10">
+        <div class="col-md-6 border">.col-md-6</div>
+        <div class="col-md-6 border">.col-md-6</div>
+    </div>
+    <p class="text-danger">可拖动窗口大小查看效果</p>
+
+    <h4 class="text-primary">2.好看的按钮及表单</h4>
+    <div>
+        <!-- Standard button -->
+        <button type="button" class="btn btn-default">（默认样式）Default</button>
+
+        <!-- Provides extra visual weight and identifies the primary action in a set of buttons -->
+        <button type="button" class="btn btn-primary">（首选项）Primary</button>
+
+        <!-- Indicates a successful or positive action -->
+        <button type="button" class="btn btn-success">（成功）Success</button>
+
+        <!-- Contextual button for informational alert messages -->
+        <button type="button" class="btn btn-info">（一般信息）Info</button>
+
+        <!-- Indicates caution should be taken with this action -->
+        <button type="button" class="btn btn-warning">（警告）Warning</button>
+
+        <!-- Indicates a dangerous or potentially negative action -->
+        <button type="button" class="btn btn-danger">（危险）Danger</button>
+
+        <!-- Deemphasize a button by making it look like a link while maintaining button behavior -->
+        <button type="button" class="btn btn-link">（链接）Link</button>
+    </div>
+    <p>不同尺寸的按钮</p>
+    <div>
+        <p>
+            <button type="button" class="btn btn-primary btn-lg">（大按钮）Large button</button>
+        </p>
+        <p>
+            <button type="button" class="btn btn-primary">（默认尺寸）Default button</button>
+        </p>
+        <p>
+            <button type="button" class="btn btn-primary btn-sm">（小按钮）Small button</button>
+        </p>
+        <p>
+            <button type="button" class="btn btn-primary btn-xs">（超小尺寸）Extra small button</button>
+        </p>
+    </div>
+    <p>不可用状态</p>
+    <div>
+        <button type="button" class="btn btn-lg btn-primary" disabled="disabled">Primary button</button>
+        <button type="button" class="btn btn-default btn-lg" disabled="disabled">Button</button>
+    </div>
+    <h5>基本表单</h5>
+    <form>
+        <div class="form-group">
+            <label for="exampleInputEmail1">Email address</label>
+            <input type="email" class="form-control" id="exampleInputEmail1" placeholder="Email">
+        </div>
+        <div class="form-group">
+            <label for="exampleInputPassword1">Password</label>
+            <input type="password" class="form-control" id="exampleInputPassword1" placeholder="Password">
+        </div>
+        <div class="form-group">
+            <label for="exampleInputFile">File input</label>
+            <input type="file" id="exampleInputFile">
+            <p class="help-block">Example block-level help text here.</p>
+        </div>
+        <div class="checkbox">
+            <label>
+                <input type="checkbox"> Check me out
+            </label>
+        </div>
+        <button type="submit" class="btn btn-default">Submit</button>
+    </form>
+    <h5>水平排列的表单</h5>
+    <form class="form-horizontal">
+        <div class="form-group">
+            <label for="inputEmail3" class="col-sm-2 control-label">Email</label>
+            <div class="col-sm-10">
+                <input type="email" class="form-control" id="inputEmail3" placeholder="Email">
+            </div>
+        </div>
+        <div class="form-group">
+            <label for="inputPassword3" class="col-sm-2 control-label">Password</label>
+            <div class="col-sm-10">
+                <input type="password" class="form-control" id="inputPassword3" placeholder="Password">
+            </div>
+        </div>
+        <div class="form-group">
+            <div class="col-sm-offset-2 col-sm-10">
+                <div class="checkbox">
+                    <label>
+                        <input type="checkbox"> Remember me
+                    </label>
+                </div>
+            </div>
+        </div>
+        <div class="form-group">
+            <div class="col-sm-offset-2 col-sm-10">
+                <button type="submit" class="btn btn-default">Sign in</button>
+            </div>
+        </div>
+    </form>
+    <h5 class="text-success">更多css样式参照</h5>
+    <p>bootstrap官方文档：<a href="https://v3.bootcss.com/css/" target="_Blank">https://v3.bootcss.com/css/</a></p>
+
+    <h3>JavaScript 插件</h3>
+    <p>JavaScript 插件可以单个引入（使用 Bootstrap 提供的单个 *.js 文件），或者一次性全部引入（使用 bootstrap.js 或压缩版的 bootstrap.min.js）。</p>
+    <h4 class="text-primary">1.弹出框</h4>
+    <button class="btn btn-primary" data-toggle="modal" data-target="#myModal">点击弹出</button>
+    <div class="modal fade" tabindex="-1" role="dialog" id="myModal">
+        <div class="modal-dialog" role="document">
+            <div class="modal-content">
+                <div class="modal-header">
+                    <button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">&times;</span></button>
+                    <h4 class="modal-title">Modal title</h4>
+                </div>
+                <div class="modal-body">
+                    <p>One fine body&hellip;</p>
+                </div>
+                <div class="modal-footer">
+                    <button type="button" class="btn btn-default" data-dismiss="modal">Close</button>
+                    <button type="button" class="btn btn-primary">Save changes</button>
+                </div>
+            </div><!-- /.modal-content -->
+        </div><!-- /.modal-dialog -->
+    </div><!-- /.modal -->
+    <h5 class="text-success">bootstrap模态框的详细使用方法请参照</h5>
+    <p>bootstrap官网：<a href="https://v3.bootcss.com/javascript/#modals" target="_Blank">https://v3.bootcss.com/javascript/#modals</a></p>
+    <p>菜鸟教程：<a href="http://www.runoob.com/bootstrap/bootstrap-v2-modal-plugin.html" target="_Blank">http://www.runoob.com/bootstrap/bootstrap-v2-modal-plugin.html</a></p>
+
+    <h4 class="text-primary">2.选项卡</h4>
+    <p>通过结合一些 data 属性，您可以轻松地创建一个标签页界面。通过这个插件您可以把内容放置在标签页或者是胶囊式标签页甚至是下拉菜单标签页中。</p>
+    <ul id="myTab" class="nav nav-tabs">
+        <li class="active"><a href="#home" data-toggle="tab">悯农</a></li>
+        <li><a href="#ios" data-toggle="tab">iOS</a></li>
+        <li class="dropdown">
+            <a href="#" id="myTabDrop1" class="dropdown-toggle"
+               data-toggle="dropdown">Java
+                <b class="caret"></b>
+            </a>
+            <ul class="dropdown-menu" role="menu" aria-labelledby="myTabDrop1">
+                <li><a href="#jmeter" tabindex="-1" data-toggle="tab">上联</a></li>
+                <li><a href="#ejb" tabindex="-1" data-toggle="tab">下联</a></li>
+            </ul>
+        </li>
+    </ul>
+    <div id="myTabContent" class="tab-content">
+        <div class="tab-pane fade in active" id="home">
+            <p>锄禾日当午，汗滴禾下土</p>
+        </div>
+        <div class="tab-pane fade" id="ios">
+            <p>你是我的小呀小苹果！！！</p>
+        </div>
+        <div class="tab-pane fade" id="jmeter">
+            <p>天王盖地虎</p>
+        </div>
+        <div class="tab-pane fade" id="ejb">
+            <p>小鸡炖蘑菇</p>
+        </div>
+    </div>
+    <h5 class="text-success" style="margin-top:30px;">bootstrap选项卡的详细使用方法请参照</h5>
+    <p>bootstrap官网：<a href="https://v3.bootcss.com/javascript/#tabs" target="_Blank">https://v3.bootcss.com/javascript/#tabs</a></p>
+    <p>菜鸟教程：<a href="http://www.runoob.com/bootstrap/bootstrap-v2-tab-plugin.html" target="_Blank">http://www.runoob.com/bootstrap/bootstrap-v2-tab-plugin.html</a></p>
+
+    <h4 class="text-primary">3.折叠</h4>
+    <p>折叠（Collapse）插件可以很容易地让页面区域折叠起来。无论您用它来创建折叠导航还是内容面板，它都允许很多内容选项。</p>
+    <div class="panel-group" id="accordion" role="tablist" aria-multiselectable="true">
+        <div class="panel panel-default">
+            <div class="panel-heading" role="tab" id="headingOne">
+                <h4 class="panel-title">
+                    <a role="button" data-toggle="collapse" data-parent="#accordion" href="#collapseOne" aria-expanded="true" aria-controls="collapseOne">
+                        Collapsible Group Item #1
+                    </a>
+                </h4>
+            </div>
+            <div id="collapseOne" class="panel-collapse collapse in" role="tabpanel" aria-labelledby="headingOne">
+                <div class="panel-body">
+                    Anim pariatur cliche reprehenderit, enim eiusmod high life accusamus terry richardson ad squid. 3 wolf moon officia aute, non cupidatat skateboard dolor brunch. Food truck quinoa nesciunt laborum eiusmod. Brunch 3 wolf moon tempor, sunt aliqua put a bird on it squid single-origin coffee nulla assumenda shoreditch et. Nihil anim keffiyeh helvetica, craft beer labore wes anderson cred nesciunt sapiente ea proident. Ad vegan excepteur butcher vice lomo. Leggings occaecat craft beer farm-to-table, raw denim aesthetic synth nesciunt you probably haven't heard of them accusamus labore sustainable VHS.
+                </div>
+            </div>
+        </div>
+        <div class="panel panel-default">
+            <div class="panel-heading" role="tab" id="headingTwo">
+                <h4 class="panel-title">
+                    <a class="collapsed" role="button" data-toggle="collapse" data-parent="#accordion" href="#collapseTwo" aria-expanded="false" aria-controls="collapseTwo">
+                        Collapsible Group Item #2
+                    </a>
+                </h4>
+            </div>
+            <div id="collapseTwo" class="panel-collapse collapse" role="tabpanel" aria-labelledby="headingTwo">
+                <div class="panel-body">
+                    Anim pariatur cliche reprehenderit, enim eiusmod high life accusamus terry richardson ad squid. 3 wolf moon officia aute, non cupidatat skateboard dolor brunch. Food truck quinoa nesciunt laborum eiusmod. Brunch 3 wolf moon tempor, sunt aliqua put a bird on it squid single-origin coffee nulla assumenda shoreditch et. Nihil anim keffiyeh helvetica, craft beer labore wes anderson cred nesciunt sapiente ea proident. Ad vegan excepteur butcher vice lomo. Leggings occaecat craft beer farm-to-table, raw denim aesthetic synth nesciunt you probably haven't heard of them accusamus labore sustainable VHS.
+                </div>
+            </div>
+        </div>
+        <div class="panel panel-default">
+            <div class="panel-heading" role="tab" id="headingThree">
+                <h4 class="panel-title">
+                    <a class="collapsed" role="button" data-toggle="collapse" data-parent="#accordion" href="#collapseThree" aria-expanded="false" aria-controls="collapseThree">
+                        Collapsible Group Item #3
+                    </a>
+                </h4>
+            </div>
+            <div id="collapseThree" class="panel-collapse collapse" role="tabpanel" aria-labelledby="headingThree">
+                <div class="panel-body">
+                    Anim pariatur cliche reprehenderit, enim eiusmod high life accusamus terry richardson ad squid. 3 wolf moon officia aute, non cupidatat skateboard dolor brunch. Food truck quinoa nesciunt laborum eiusmod. Brunch 3 wolf moon tempor, sunt aliqua put a bird on it squid single-origin coffee nulla assumenda shoreditch et. Nihil anim keffiyeh helvetica, craft beer labore wes anderson cred nesciunt sapiente ea proident. Ad vegan excepteur butcher vice lomo. Leggings occaecat craft beer farm-to-table, raw denim aesthetic synth nesciunt you probably haven't heard of them accusamus labore sustainable VHS.
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <h5 class="text-success" style="margin-top:30px;">bootstrap折叠的详细使用方法请参照</h5>
+    <p>bootstrap官网：<a href="https://v3.bootcss.com/javascript/#collapse" target="_Blank">https://v3.bootcss.com/javascript/#collapse</a></p>
+    <p>菜鸟教程：<a href="http://www.runoob.com/bootstrap/bootstrap-collapse-plugin.html" target="_Blank">http://www.runoob.com/bootstrap/bootstrap-collapse-plugin.html</a></p>
+
+    <h4 class="text-primary">4.轮播图</h4>
+    <p>Bootstrap 轮播（Carousel）插件是一种灵活的响应式的向站点添加滑块的方式。除此之外，内容也是足够灵活的，可以是图像、内嵌框架、视频或者其他您想要放置的任何类型的内容。</p>
+    <h5 class="text-success">bootstrap轮播图的详细使用方法请参照</h5>
+    <p>bootstrap官网：<a href="https://v3.bootcss.com/javascript/#carousel" target="_Blank">https://v3.bootcss.com/javascript/#carousel</a></p>
+    <p>菜鸟教程：<a href="http://www.runoob.com/bootstrap/bootstrap-carousel-plugin.html" target="_Blank">http://www.runoob.com/bootstrap/bootstrap-carousel-plugin.html</a></p>
+
+    <h3>常见问题整理</h3>
+    <dl>
+        <dt>1.弹出框禁用空白处点击关闭</dt>
+        <dd>
+            <pre>$('#myModal').modal({backdrop: 'static', keyboard: false});</pre>
+            <p>backdrop:static时,空白处不关闭.</p>
+            <p>keyboard:false时,esc键盘不关闭.</p>
+        </dd>
+        <dt>2.弹出框中的input不能得焦</dt>
+        <dd>
+            <p>解决办法：去掉tabindex="-1"</p>
+        </dd>
+    </dl>
+
+    <h3>CDN</h3>
+    <p>BootStrap-css：<code>https://cdn.bootcss.com/bootstrap/3.3.7/css/bootstrap.min.css</code></p>
+    <p>BootStrap-js：<code>https://cdn.bootcss.com/bootstrap/3.3.7/js/bootstrap.min.js</code></p>
+
+    <h3>参考网址</h3>
+    <p>官方网站：<a href="https://v3.bootcss.com/" target="_Blank">https://v3.bootcss.com/</a></p>
+    <p>菜鸟教程：<a href="http://www.runoob.com/bootstrap/bootstrap-tutorial.html" target="_Blank">http://www.runoob.com/bootstrap/bootstrap-tutorial.html</a></p>
+</div>
+
+<script src="../js/jquery-1.11.3.min.js"></script>
+<script src="../js/bootstrap.min.js"></script>
+</body>
+</html>

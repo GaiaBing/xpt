@@ -1,0 +1,60 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+    <link rel="stylesheet" type="text/css" href="https://cdn.bootcss.com/bootstrap/3.3.7/css/bootstrap.css" />
+    <link rel="stylesheet" type="text/css" href="../css/style.css" />
+</head>
+<body>
+<div class="subWrapper">
+    <h2>RequireJS <small>JavaScript模块加载器</small></h2>
+    <h3>起步</h3>
+    <p>RequireJS是一个非常小巧的JavaScript模块载入框架，是AMD规范最好的实现者之一。最新版本的RequireJS压缩后只有14K，堪称非常轻量。它还同时可以和其他的框架协同工作，使用RequireJS必将使您的前端代码质量得以提升。</p>
+    <h3>重点</h3>
+    <h4 class="text-primary">1.requireJs的使用</h4>
+    <p>requireJs使用使用口诀：两函数 一配置 一属性</p>
+
+    <h4 class="text-primary">2.data-main属性</h4>
+    <pre>&lt;script data-main="js/main" src="js/require.js"&gt;&lt;/script&gt;</pre>
+    <p>加载requirejs脚本的script标签加入了data-main属性，这个属性指定的js将在加载完reuqire.js后处理，我们把require.config的配置加入到data-main后，就可以使每一个页面都使用这个配置，然后页面中就可以直接使用require来加载所有的短模块名。</p>
+    <p>当script标签指定data-main属性时，require会默认的将data-main指定的js为根路径。</p>
+
+    <h4 class="text-primary">3.require.config()配置</h4>
+    <p>require.config是用来配置模块加载位置，简单点说就是给模块起一个更短更好记的名字</p>
+    <p style="white-space:pre-line">baseUrl——用于加载模块的根路径。
+        paths——用于映射不存在根路径下面的模块路径。
+        shims——配置在脚本/模块外面并没有使用RequireJS的函数依赖并且初始化函数。</p>
+    <pre>require.config({
+    <span class="text-primary">//默认情况下从这个文件开始拉去取资源</span>
+    baseUrl:'scripts/app',
+    <span class="text-primary">//如果你的依赖模块以pb头，会从scripts/pb加载模块。</span>
+    paths:{
+        pb:'../pb'
+    },
+    <span class="text-primary">// load backbone as a shim，所谓就是将没有采用requirejs方式定义</span>
+    <span class="text-primary">//模块的东西转变为requirejs模块</span>
+    shim:{
+        'backbone':{
+            deps:['underscore'],
+            exports:'Backbone'
+        }
+    }
+});</pre>
+
+    <h4 class="text-primary">4.define()函数</h4>
+    <p>定义模块。</p>
+    <p style="white-space:pre-line">define()接受两个参数:
+        第一个参数应该是一个依赖项名称数组，
+        第二个参数应该是一个定义函数。
+    </p>
+
+    <h4 class="text-primary">5.require()函数</h4>
+    <p>加载依赖模块，并执行加载完后的回调函数。</p>
+    <p style="white-space:pre-line">define()接受两个参数:
+        第一个参数是一个数组，表示所依赖的模块。
+        第二个参数是一个回调函数，当前面指定的模块都加载成功后，它将被调用。加载的模块会以参数形式传入该函数，从而在回调函数内部就可以使用这些模块。
+    </p>
+</div>
+</body>
+</html>
