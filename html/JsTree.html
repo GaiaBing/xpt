@@ -89,14 +89,73 @@ $(function() {
 }]</pre>
             <p>Lazy loading(懒加载)定义树</p>
             <p>当有大量的数据展示, 而一个请求会很占资源的时候. Lazy loading可以更快速的加载数据 - jstree 会在用户浏览到的时候发送AJAX请求获取节点数据.</p>
-            <pre></pre>
+            <pre>$('#jstree_demo_div').jstree({
+    'core' : {
+        'data' : {
+            "url" : "//www.jstree.com/fiddle/?lazy",
+            "data" : function (node) {
+                return { "id" : node.id };
+            }
+        }
+    }
+});</pre>
         </dd>
     </dl>
 
     <h4 class="text-primary">3.jsTree常用方法</h4>
-    <p></p>
-    <p style="white-space:pre-line"></p>
+    <dl>
+        <dt>1.获取整个树</dt>
+        <dd>
+            <pre>var ref = $('#jstree').jstree(true);//获得整个树</pre>
+        </dd>
+        <dt>2.选择一个节点 select_node()</dt>
+        <dd>
+            <pre>var sel = $('#jstree').jstree(true).select_node();</pre>
+        </dd>
+        <dt>3.选择所有节点 select_all()</dt>
+        <dd>
+            <pre>var sel = $('#jstree').jstree(true).select_all();</pre>
+        </dd>
+        <dt>4.获取节点 get_node()</dt>
+        <dd>
+            <p>通过使用任何输入（子DOM元素，ID字符串，选择器等）来获取节点的JSON表示（或实际的jQuery扩展DOM节点）</p>
+            <pre>var node=$('#jstree').jstree(true).get_node("#"+id);</pre>
+        </dd>
+        <dt>4.获取所有选定节点的数组 get_selected()</dt>
+        <dd>
+            <pre>var sel = $('#jstree').jstree(true).get_selected();</pre>
+        </dd>
+        <dt>5.获取所有顶级选定节点 get_top_selected()</dt>
+        <dd>
+            <p>获取所有顶级选定节点的数组（忽略选定节点的子节点）</p>
+            <pre>var sel = $('#jstree').jstree(true).get_top_selected()</pre>
+        </dd>
+        <dt>6.获取所有底层选定节点 get_bottom_selected()</dt>
+        <dd>
+            <p>获取所有底层选定节点的数组（忽略选定的父节点）</p>
+            <pre>var sel = $('#jstree').jstree(true).get_bottom_selected()</pre>
+        </dd>
+        <dt>7.删除节点 delete_node()</dt>
+        <dd>
+            <pre>var ref =  $('#jstree').jstree(true),<span class="text-primary">//获取整棵树</span>
+var sel = ref.get_selected();<span class="text-primary">//获取所有选中节点</span>
+ref.delete_node(sel)<span class="text-primary">//删除选中节点</span></pre>
+        </dd>
+        <dt>8.新建节点create_node()</dt>
+        <dd>
+            <pre>ref.create_node(addId, {//addId 父节点（创建根节点使用“＃”（字符串）或空值）
+"id": msg.rt,//节点ID
+"text": roleName//节点文本
+}), "last";//表示添加到末尾</pre>
+        </dd>
+        <dt>9.获取节点文本 get_text()</dt>
+        <dd>
+            <pre>var sltText = ref.get_text(sel);</pre>
+        </dd>
+    </dl>
 
+    <h3>参考网址</h3>
+    <p>官方网站：<a href="https://www.jstree.com" target="_Blank">https://www.jstree.com</a></p>
 </div>
 </body>
 </html>
