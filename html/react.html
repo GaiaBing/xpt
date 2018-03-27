@@ -1,0 +1,66 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+    <link rel="stylesheet" type="text/css" href="https://cdn.bootcss.com/bootstrap/3.3.7/css/bootstrap.css" />
+    <link rel="stylesheet" type="text/css" href="../css/style.css" />
+</head>
+<body>
+<div class="subWrapper">
+    <h2>React <small>用于构建用户界面的 JAVASCRIPT 库</small></h2>
+    <h3>起步</h3>
+    <p>用于构建用户界面的JavaScript库。React设计思想独特，性能出众，代码逻辑简单，属于革命性创新，从最早的UI引擎逐渐转变成一整套Web App的解决方案，是未来一段时间内Web开发的主流工具（包含但不限于React、Redux全家桶）</p>
+    <h3>参考网址</h3>
+    <p>官方网站：<a href="https://reactjs.org" target="_Blank">https://reactjs.org</a></p>
+    <p>中文网：<a href="http://www.css88.com/" target="_Blank">http://www.css88.com/</a></p>
+    <p>阮一峰React技术栈系列教程：<a href="http://www.ruanyifeng.com/blog/2016/09/react-technology-stack.html" target="_Blank">http://www.ruanyifeng.com/blog/2016/09/react-technology-stack.html</a></p>
+    <p>菜鸟教程：<a href="http://www.runoob.com/react/react-tutorial.html" target="_Blank">http://www.runoob.com/react/react-tutorial.html</a></p>
+    <p>中文论坛：<a href="http://react-china.org/" target="_Blank">http://react-china.org/</a></p>
+    <p>React 的ES5 ES6写法对照表：<a href="http://bbs.reactnative.cn/topic/15/react-react-native-%E7%9A%84es5-es6%E5%86%99%E6%B3%95%E5%AF%B9%E7%85%A7%E8%A1%A8" target="_Blank">http://bbs.reactnative.cn/topic/15/react-react-native-的es5-es6写法对照表</a></p>
+    <p>react涉及的技术、组件太多，技术栈方面可以参考阮一峰老师的博客</p>
+    <h3>重点</h3>
+    <h4 class="text-primary">1.组件和props</h4>
+    <p>组件使你可以将UI划分为一个一个独立、可复用的小部件，并可以对每个部件进行单独的设计。<strong>组件名称总是以大写字母开始。</strong></p>
+    <p>1). 分类：函数式组件和类组件</p>
+    <p>函数式组件</p>
+    <pre>
+function Welcome (props){
+    return &lt;h1&gt;Hello, {props.name}&lt;/h1&gt;
+}
+    </pre>
+    <p>类组件</p>
+    <pre>
+class Welcome extends React.Component{
+    render(){
+        return &lt;h1&gt;Hello, {props.name}&lt;/h1&gt;
+    }
+}
+    </pre>
+    <p>比较：函数式组件更简洁；类定义的组件使用ES6写法，有局部状态</p>
+    <p>2). <code>ReactDOM.render()</code> 渲染组件</p>
+    <p>参数1：组件，参数2：父节点对象</p>
+    <p>3). props不可修改</p>
+    <p>所有React组件都必须是纯函数，并禁止修改自身props</p>
+    <p><strong>注意：render中只能有一个根标签</strong></p>
+    <h4 class="text-primary">2.state和生命周期</h4>
+    <p>1). ES5和ES6在state写法上的区别参考上面网址中的写法对照表</p>
+    <p>在<code>constructor()</code>中初始state</p>
+    <p>用<code>setState()</code>改变state</p>
+    <p>setState可以接收一个函数，这个函数接受两个参数，第一个参数表示上一个状态值，第二个参数表示当前props</p>
+    <pre>
+this.setState((prevState, props) => ({
+  counter: prevState.counter + props.increment
+}));
+    </pre>
+    <p><strong>注意：直接修改state不会重新渲染</strong></p>
+    <p>2). React 组件生命周期</p>
+    <p>用于在渲染dom前后或者移除dom前后插入事件</p>
+    <p>有三个状态：Mounting（已插入真实 DOM）、Updating（正在被重新渲染）、Unmounting（已移出真实 DOM）</p>
+    <p><strong>注意：React事件使用驼峰命名，而不是全部小写</strong></p>
+    <h4 class="text-primary">3.使用第三方框架</h4>
+    <p>react通过webpack调用第三方框架</p>
+    <p>参考网址：<a href="https://www.jianshu.com/p/c8a805145046" target="_Blank">https://www.jianshu.com/p/c8a805145046</a></p>
+</div>
+</body>
+</html>
