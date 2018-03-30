@@ -2,9 +2,148 @@
 <html lang="en">
 <head>
     <meta charset="UTF-8">
-    <title>Title</title>
+    <title>Lodash</title>
+    <link rel="stylesheet" type="text/css" href="https://cdn.bootcss.com/bootstrap/3.3.7/css/bootstrap.css" />
+    <link rel="stylesheet" type="text/css" href="../css/style.css" />
+
 </head>
 <body>
-Lodash 整理中...
+    <div class="subWrapper">
+        <h2>Lodash<small>一个一致性、模块化、高性能的 JavaScript 实用工具库</small></h2>
+        <h3>起步</h3>
+        <p style="white-space: pre-line">Lodash 通过降低 array、number、objects、string 等等的使用难度从而让 JavaScript 变得更简单。
+            Lodash 的模块化方法 非常适用于：
+            遍历 array、object 和 string。
+            对值进行操作和检测。
+            创建符合功能的函数。
+        </p>
+        <h3>重点</h3>
+        <h4 class="text-primary">常用方法</h4>
+        <dl>
+            <dt>1. _.concat(array, [values])</dt>
+            <dl>
+                <p>创建一个用任何数组 或 值连接的新数组。</p>
+                <pre>var array = [1];
+var other = _.concat(array, 2, [3], [[4]]);
+
+console.log(other);
+<span class="text-primary">// => [1, 2, 3, [4]]</span>
+
+console.log(array);
+<span class="text-primary">// => [1]</span></pre>
+            </dl>
+
+            <dt>2. _.uniq(array)</dt>
+            <dd>
+                <p>创建一个不重复的数组副本。使用了 SameValueZero 等值比较。只有首次出现的元素才会被保留。</p>
+                <pre>_.uniq([2, 1, 2]);
+<span class="text-primary">// => [2, 1]</span></pre>
+            </dd>
+
+            <dt>3.  _.isArray(value)</dt>
+            <dd>
+                <p>检查value是否是Array类对象。</p>
+                <pre>_.isArray([1, 2, 3]);
+<span class="text-primary">// => true</span>
+
+_.isArray(document.body.children);
+<span class="text-primary">// => false</span>
+</pre>
+            </dd>
+
+            <dt>4.  _.forEach(collection, [iteratee=_.identity])</dt>
+            <dd>
+                <p>遍历集合中元素，与常用forEach()不同，使用了lodash过后，_.forEach()这是一个值，而不是一个函数。</p>
+                <pre>_.forEach({ 'a': 1, 'b': 2 }, function(value, key) {
+  console.log(key);
+});
+<span class="text-primary">// => 输出 'a' 和 'b' (不保证遍历的顺序)</span></pre>
+            </dd>
+
+            <dt>5.  _.merge(object, [sources])</dt>
+            <dd>
+                <p>
+                    递归合并来源对象的自身和继承的可枚举属性到目标对象。 跳过来源对象解析为 undefined 的属性。
+                    数组和普通对象会递归合并，其他对象和值会被直接分配。 来源对象从左到右分配，后续的来源对象属
+                    性会覆盖之前分配的属性。
+                </p>
+                <pre>var users = {
+  'data': [{ 'user': 'barney' }, { 'user': 'fred' }]
+};
+
+var ages = {
+  'data': [{ 'age': 36 }, { 'age': 40 }]
+};
+
+_.merge(users, ages);
+<span class="text-primary">// => { 'data': [{ 'user': 'barney', 'age': 36 }, { 'user': 'fred', 'age': 40 }] }</span></pre>
+            </dd>
+
+            <dt>6.  _.map(collection, [iteratee=_.identity])</dt>
+            <dd>
+                <p>创建一个经过 iteratee 处理的集合中每一个元素的结果数组。 iteratee 会传入3个参数：(value, index|key, collection)。 </p>
+                <p>可深层查找属性值</p>
+                <pre>var ownerArr = [{
+    "owner": "Colin",
+    "pets": [{"name":"dog1"}, {"name": "dog2"}]
+}, {
+    "owner": "John",
+    "pets": [{"name":"dog3"}, {"name": "dog4"}]
+}];
+
+<span class="text-parimary">// 数组的map方法</span>
+ownerArr.map(function(owner){
+   return owner.pets[0].name;
+});
+
+<span class="text-primary">// Lodash</span>
+_.map(ownerArr, 'pets[0].name');
+</pre>
+            </dd>
+
+            <dt>7.  _.random([min=0], [max=1], [floating])</dt>
+            <dd>
+                <p>
+                    随机数，产生一个包括 min 与 max 之间的数。 如果只提供一个参数返回一个0
+                    到提供数之间的数。 如果 floating 设为 true，或者 min 或 max 是浮点数，结果返回浮点数。
+                </p>
+                <pre><span class="text-primary">// 普通方法</span>
+function getRandomNumber(min, max){
+    return Math.floor(Math.random() * (max - min + 1)) + min;
+}
+
+getRandomNumber(15, 20);
+
+<span class="text-primary">// Lodash</span>
+_.random(15, 20);
+</pre>
+            </dd>
+
+            <dt>8.  _.assign(object, [sources])</dt>
+            <dd>
+                <p>
+                    扩展属性，分配来源对象的可枚举属性到目标对象上。 来源对象的应用规则是从左到右，随后的下一个
+                    对象的属性会覆盖上一个对象的属性。
+                </p>
+                <pre>function Foo() {
+  this.c = 3;
+}
+
+function Bar() {
+  this.e = 5;
+}
+
+Foo.prototype.d = 4;
+Bar.prototype.f = 6;
+
+_.assign({ 'a': 1 }, new Foo, new Bar);
+<span class="text-primary">// => { 'a': 1, 'c': 3, 'e': 5 }</span></pre>
+            </dd>
+        </dl>
+        <p>lodash的方法有很多，以上讲解了开发中常用的一些，具体方法可查阅官方文档。</p>
+        <h3>参考网址</h3>
+        <p>中文文档：<a href="http://lodash.think2011.net/" target="_blank">http://lodash.think2011.net/</a></p>
+        <p>官方网站：<a href="https://lodash.com" target="_blank">https://lodash.com</a></p>
+    </div>
 </body>
 </html>
