@@ -67,6 +67,67 @@ this.setState((prevState, props) => ({
     <h4 class="text-primary">3.使用第三方框架</h4>
     <p>react通过webpack调用第三方框架</p>
     <p>参考网址：<a href="https://www.jianshu.com/p/c8a805145046" target="_Blank">https://www.jianshu.com/p/c8a805145046</a></p>
+    <p><strong>export和import</strong></p>
+    <p>ES6 在语言标准的层面上，实现了模块功能，方便模块的引入</p>
+    <p>export命令用于规定模块的对外接口，import命令用于输入其他模块提供的功能。</p>
+    <p>1). export的使用方法：</p>
+    <pre>
+<span class="text-primary">//写法一</span>
+export var firstName = 'Michael';
+export var lastName = 'Jackson';
+export var year = 1958;
+
+<span class="text-primary">//写法二（推荐）</span>
+var firstName = 'Michael';
+var lastName = 'Jackson';
+var year = 1958;
+
+export {firstName, lastName, year};
+
+<span class="text-primary">//可以使用as关键字重命名</span>
+function v1() { ... }
+function v2() { ... }
+
+export {
+  v1 as streamV1,
+  v2 as streamV2,
+  v2 as streamLatestVersion
+};
+    </pre>
+    <p>2). import的使用方法：</p>
+    <pre>
+import {firstName, lastName, year} from './profile.js';
+//如果想为输入的变量重新取一个名字，import命令要使用as关键字，将输入的变量重命名。
+import { lastName as surname } from './profile.js';
+    </pre>
+    <p>import后面的from指定模块文件的位置，可以是相对路径，也可以是绝对路径，.js后缀可以省略。</p>
+    <p>3). export default 命令：</p>
+    <p>用export default命令，可以为模块指定默认输出</p>
+    <pre>
+// export-default.js
+export default function () {
+  console.log('foo');
+}
+    </pre>
+    <p>其他模块加载该模块时，import命令可以为该匿名函数指定任意名字。</p>
+    <pre>
+// import-default.js
+import customName from './export-default';
+customName(); // 'foo'
+
+import _ from 'lodash';
+    </pre>
+    <h3>常见问题整理</h3>
+    <dl>
+        <dt>1.</dt>
+        <dd>
+
+        </dd>
+        <dt>2.</dt>
+        <dd>
+
+        </dd>
+    </dl>
 </div>
 </body>
 </html>
