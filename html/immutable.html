@@ -3,8 +3,23 @@
 <head>
     <meta charset="UTF-8">
     <title>Title</title>
+    <link rel="stylesheet" type="text/css" href="https://cdn.bootcss.com/bootstrap/3.3.7/css/bootstrap.css" />
+    <link rel="stylesheet" type="text/css" href="../css/style.css" />
 </head>
 <body>
-Immutable 整理中...
+<div class="subWrapper">
+    <h2>Immutable <small>JavaScript中的不可变集合</small></h2>
+    <h3>起步</h3>
+    <p>JavaScript 中定义一个新的对象等于原始对象的时候，两个对象实际上指向同一个内存地址。</p>
+    <p>如 foo={a: 1}; bar=foo; bar.a=2 你会发现此时 foo.a 也被改成了 2。</p>
+    <p>虽然这样做可以节约内存，但很多时候让我们的程序变得复杂。</p>
+    <p>为了解决这个问题，一般的做法是使用 shallowCopy（浅拷贝）或 deepCopy（深拷贝）来避免被修改，但这样做造成了 CPU 和内存的浪费。</p>
+    <p>Immutable 可以很好地解决这些问题。</p>
+    <h3>参考网址</h3>
+    <p>Immutable 详解及 React 中实践：<a href="https://github.com/camsong/blog/issues/3" target="_Blank" rel="nofollow noreferrer">https://github.com/camsong/blog/issues/3</a></p>
+    <p>这篇文章详细的介绍了Immutable 的概念和使用方法，可作为入门使用</p>
+    <p>官方网站：<a href="http://facebook.github.io/immutable-js/" target="_Blank" rel="nofollow noreferrer">http://facebook.github.io/immutable-js/</a></p>
+    <p>看官方API的时候请打开浏览器的Console查看对象说明</p>
+</div>
 </body>
 </html>
