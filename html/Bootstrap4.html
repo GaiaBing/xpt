@@ -2,9 +2,303 @@
 <html lang="en">
 <head>
     <meta charset="UTF-8">
-    <title>Title</title>
-</head>
+    <title>bootstrap4</title>
+    <link rel="stylesheet" href="https://cdn.bootcss.com/bootstrap/4.0.0/css/bootstrap.min.css" integrity="sha384-Gn5384xqQ1aoWXA+058RXPxPg6fy4IWvTNh0E263XmFcJlSAwiGgFAW/dAiS6JXm" crossorigin="anonymous">
+    <link rel="stylesheet" type="text/css" href="https://cdn.bootcss.com/bootstrap/3.3.7/css/bootstrap.css" />
+    <link href="../css/docs.min.css" rel="stylesheet">
+    <link rel="stylesheet" type="text/css" href="../css/style.css" />
+   </head>
 <body>
-Bootstrap4 整理中...
+<div class="subWrapper">
+    <h2>Bootstrap4</h2>
+    <h3>起步</h3>
+    <p>Bootstrap 是世界上最受欢迎的前端框架，用于构建响应式、移动设备优先的网站。</p>
+    <p>Bootstrap4是Bootstrap最新版，有重大改进，技术栈过渡时首选。默认使用flexbox弹性盒布局，支持IE10+</p>
+    <strong>快速开始</strong>
+    <p>将引入 Bootstrap 样式表的 <link> 标签复制并粘贴到 <head> 中，并放在所有其他样式表之前。</p>
+    <pre>&lt;link rel="stylesheet" href="https://cdn.bootcss.com/bootstrap/4.0.0/css/bootstrap.min.css" integrity="sha384-Gn5384xqQ1aoWXA+058RXPxPg6fy4IWvTNh0E263XmFcJlSAwiGgFAW/dAiS6JXm" crossorigin="anonymous"&gt;</pre>
+    <p>Bootstrap 中的许多组件需要依赖 JavaScript 才能运行。具体来说，他们依赖的是 jQuery、Popper.js
+        以及我们自己开发的 JavaScript 插件。具体操作就是将下列 &lt;script&lt; 标签放到页面底部的
+        &gt;/body&lt; 标签之前。注意顺序，jQuery 必须放在最前面，然后是 Popper.js，最后是我们自己的 JavaScript
+        插件。
+    </p>
+    <pre>&lt;script src="https://cdn.bootcss.com/jquery/3.2.1/jquery.slim.min.js" integrity="sha384-KJ3o2DKtIkvYIK3UENzmM7KCkRr/rE9/Qpg6aAZGJwFDMVNA/GpGFF93hXpG5KkN" crossorigin="anonymous"&gt;&lt;/script&gt;
+&lt;script src="https://cdn.bootcss.com/popper.js/1.12.9/umd/popper.min.js" integrity="sha384-ApNbgh9B+Y1QKtv3Rn7W3mgPxhU9K/ScQsAP7hUibX39j7fakFPskvXusvfa0b4Q" crossorigin="anonymous"&gt;&lt;/script&gt;
+&lt;script src="https://cdn.bootcss.com/bootstrap/4.0.0/js/bootstrap.min.js" integrity="sha384-JZR6Spejh4U02d8jOt6vLEHfe/JQGiRRSQQxSfFWpi1MquVdAyjUar5+76PVCmYl" crossorigin="anonymous"&gt;&lt;/script&gt;</pre>
+    <strong>响应式 meta 标签</strong><span>添加到&lt;head&gt;中</span>
+    <pre>&lt;meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no"&gt;</pre>
+
+    <h3>重点</h3>
+    <h4 class="text-primary">1.盒模型</h4>
+    <p>
+        全局的 box-sizing 值从 content-box 修改为 border-box。这就确保了 padding 不会影响元素最终的宽度计算，
+        但是这可能会导致第三方组件出现问题，例如 Google 地图和 Google 定制搜索。如需要重置box-sizing的值，以下是
+        示例代码。
+    </p>
+    <pre>.selector-for-some-widget {
+  box-sizing: content-box;
+}</pre>
+    <p>嵌套元素（包括通过 ::before and ::after 生成的内容）都将继承 .selector-for-some-widget 指定的 box-sizing 值。</p>
+
+    <h4 class="text-primary">2.flex布局</h4>
+    <div class="bd-example-row">
+        <div class="container">
+            <div class="row">
+                <div class="col-sm">
+                   1/3
+                </div>
+                <div class="col-sm">
+                    1/3
+                </div>
+                <div class="col-sm">
+                    1/3
+                </div>
+            </div>
+        </div>
+    </div><br>
+    <pre>&lt;div class="bd-example-row"&gt;
+    &lt;div class="container"&gt;
+        &lt;div class="row"&gt;
+            &lt;div class="col-sm"&gt;
+                1/3
+            &lt;/div&lt;
+            &lt;div class="col-sm"&gt;
+                1/3
+            &lt;/div&gt;
+            &lt;div class="col-sm"&gt;
+                1/3
+            &lt;/div&gt;
+        &lt;/div&gt;
+     &lt;/div&gt;
+&lt;/div&gt;</pre>
+    <p><strong>换行</strong><span>,通过插入.w-100要将列破坏到新行的位置，创建跨越多行的等宽列。</span></p>
+    <div class="bd-example-row">
+        <div class="container">
+            <div class="row">
+                <div class="col">col</div>
+                <div class="col">col</div>
+                <div class="w-100"></div>
+                <div class="col">col</div>
+                <div class="col">col</div>
+            </div>
+        </div>
+    </div><br>
+    <pre>&lt;div class="bd-example-row"&gt;
+    &lt;div class="container"&gt;
+        &lt;div class="row"&gt;
+            &lt;div class="col"&gt;col&lt;/div&gt;
+            &lt;div class="col"&gt;col<&lt;div&gt;
+            <span class="text-primary">&lt;div class="w-100"&gt;&lt;/div&gt;</span>
+            &lt;div class="col"&gt;col&lt;/div&gt;
+            &lt;div class="col"&gt;col&lt;/div&gt;
+        &lt;/div&gt;
+    &lt;/div&gt;
+&lt;/div&gt;</pre>
+
+    <h4>对齐方式</h4>
+    <p><strong>垂直对齐</strong></p>
+    <p>行元素垂直对齐方式</p>
+    <p><span class="text-danger">.align-items-start</span>：垂直居上</p>
+    <p><span class="text-danger">.align-items-center</span>：垂直居中</p>
+    <p><span class="text-danger">.align-items-end</span>：垂直居下</p>
+    <P>单元格垂直对齐方式</P>
+    <div class="bd-example-row bd-example-row-flex-cols">
+        <div class="container">
+            <div class="row">
+                <div class="col align-self-start">
+                    One of three columns
+                </div>
+                <div class="col align-self-center">
+                    One of three columns
+                </div>
+                <div class="col align-self-end">
+                    One of three columns
+                </div>
+            </div>
+        </div>
+    </div><br>
+    <pre>&lt;div class="container"&gt;
+  &lt;div class="row"&gt;
+    &lt;div class="col align-self-start"&gt;One of three columns&lt;/div&gt;
+    &lt;div class="col align-self-center"&gt;One of three columns&lt;/div&gt;
+    &lt;div class="col align-self-end"&gt;One of three columns&lt;/div&gt;
+  &lt;/div&gt;
+&lt;/div&gt;</pre>
+    <p><strong>水平对齐</strong></p>
+    <p><span class="text-danger">.justify-content-start</span>：水平居左</p>
+    <p><span class="text-danger">.justify-content-center</span>：水平居中</p>
+    <p><span class="text-danger">.justify-content-end</span>：水平居右</p>
+    <p><span class="text-danger">.justify-content-around</span>：水平均匀分布</p>
+    <p><span class="text-danger">.justify-content-between</span>：水平两端分布</p>
+
+    <h4 class="text-primary">3.表</h4>
+    <table class="table  table-dark">
+        <thead>
+        <tr>
+            <th scope="col">#</th>
+            <th scope="col">First</th>
+            <th scope="col">Last</th>
+            <th scope="col">Handle</th>
+        </tr>
+        </thead>
+        <tbody>
+        <tr>
+            <th scope="row">1</th>
+            <td>Mark</td>
+            <td>Otto</td>
+            <td>@mdo</td>
+        </tr>
+        <tr>
+            <th scope="row">2</th>
+            <td>Jacob</td>
+            <td>Thornton</td>
+            <td>@fat</td>
+        </tr>
+        <tr>
+            <th scope="row">3</th>
+            <td>Larry</td>
+            <td>the Bird</td>
+            <td>@twitter</td>
+        </tr>
+        </tbody>
+    </table>
+
+    <pre>&lt;table class="table  table-dark"&gt;<span class="text-primary">//.table-dark在深色背景上使用浅色文字</span>
+    &lt;head&gt;
+        &lt;tr&gt;
+            &lt;th scope="col"&gt;#&lt;/th&gt;
+            &lt;th scope="col"&gt;First&lt;/th&gt;
+            &lt;th scope="col"&gt;Last&lt;/th&gt;
+            &lt;th scope="col"&gt;Handle&lt;/th&gt;
+         &lt;/tr&gt;
+    &lt;/head&gt;
+    &lt;body&gt;
+        &lt;tr&gt;
+            &lt;th scope="row"&gt;1&lt;/th&gt;
+            &lt;td&gt;Mark&lt;/td&gt;
+            &lt;td&gt;Otto&lt;/td&gt;
+            &lt;td&gt;@mdo&lt;/td&gt;
+        &lt;/tr&gt;
+        &lt;tr&gt;
+            &lt;th scope="row"&gt;2&lt;/th&gt;
+            &lt;td&gt;Jacob&lt;/td&gt;
+            &lt;td&gt;Thornton&lt;/td&gt;
+            &lt;td&gt;@fat&lt;/td&gt;
+        &lt;/tr&gt;
+        &lt;tr&gt;
+            &lt;th scope="row"&gt;3&lt;/th&gt;
+            &lt;td&gt;Larry&lt;/td&gt;
+            &lt;td&gt;the Bird&lt;/td&gt;
+            &lt;td&gt;@twitter&lt;/td&gt;
+        &lt;/tr&gt;
+    &lt;/body&gt;
+&lt;/table&gt;</pre>
+    <p>1.与表格和黑色表格类似，请使用修饰符类<strong>.thead-light</strong>或<strong>.thead-dark</strong>使&lt;thead&gt;显示为浅灰色或深灰色。</p>
+    <p>2.使用<strong>.table-striped</strong>内斑马条纹添加到任何表行&lt;tbody&gt;。</p>
+    <p>3.表格和单元格的所有边添加边框 <strong>.table-bordered</strong>。</p>
+    <p>4.添加<strong>.table-hover</strong>以在a中的表格行上启用悬停状态&lt;tbody&gt;。</p>
+    <div class="bd-example">
+        <table class="table table-hover">
+            <thead>
+            <tr>
+                <th scope="col">#</th>
+                <th scope="col">First</th>
+                <th scope="col">Last</th>
+                <th scope="col">Handle</th>
+            </tr>
+            </thead>
+            <tbody>
+            <tr>
+                <th scope="row">1</th>
+                <td>Mark</td>
+                <td>Otto</td>
+                <td>@mdo</td>
+            </tr>
+            <tr>
+                <th scope="row">2</th>
+                <td>Jacob</td>
+                <td>Thornton</td>
+                <td>@fat</td>
+            </tr>
+            <tr>
+                <th scope="row">3</th>
+                <td colspan="2">Larry the Bird</td>
+                <td>@twitter</td>
+            </tr>
+            </tbody>
+        </table>
+    </div>
+
+    <p><strong>表格行/单元格颜色</strong></p>
+    <div style="overflow: hidden">
+        <div style="width: 49%; float: left">
+            <table class="table">
+                <tr class="table-active">
+                    <td>.table-active</td>
+                </tr>
+                <tr class="table-primary">
+                    <td>.table-primary</td>
+                </tr>
+                <tr class="table-secondary">
+                    <td>.table-secondary</td>
+                </tr>
+                <tr class="table-success">
+                    <td>.table-success</td>
+                </tr>
+                <tr class="table-danger">
+                    <td>.table-danger</td>
+                </tr>
+                <tr class="table-warning">
+                    <td>.table-warning</td>
+                </tr>
+                <tr class="table-info">
+                    <td>.table-info</td>
+                </tr>
+                <tr class="table-light">
+                    <td>.table-light</td>
+                </tr>
+                <tr class="table-dark">
+                    <td>.table-dark</td>
+                </tr>
+            </table>
+        </div>
+        <div style="width: 49%; float: right">
+            <table class="table">
+                <thead>
+                <tr>
+                    <th>常规表格背景变体不适用于黑色表格，但是，您可以使用文本或背景实用程序来实现类似的样式。</th>
+                </tr>
+                </thead>
+                <tbody>
+                <tr class="bg-primary">
+                    <td>.bg-primary</td>
+                </tr>
+                <tr class="bg-success">
+                    <td>.bg-success</td>
+                </tr>
+                <tr class="bg-warning">
+                    <td>.bg-warning</td>
+                </tr>
+                <tr class="bg-danger">
+                    <td>.bg-danger</td>
+                </tr>
+                <tr class="bg-info">
+                    <td>.bg-info</td>
+                </tr>
+                </tbody>
+
+            </table>
+        </div>
+    </div>
+
+
+    <div >
+        <h3>参考网址</h3>
+        <p>官方网站：<a href="https://getbootstrap.com/ " target="_blank">https://getbootstrap.com/</a></p>
+        <p>中文网站：<a href="https://v4.bootcss.com/docs/4.0/" target="_Blank">https://v4.bootcss.com/docs/4.0/</a></p>
+
+    </div>
+
+</div>
 </body>
 </html>
