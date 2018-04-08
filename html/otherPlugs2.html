@@ -2,9 +2,111 @@
 <html lang="en">
 <head>
     <meta charset="UTF-8">
-    <title>Title</title>
+    <title>其他组件</title>
+    <link rel="stylesheet" type="text/css" href="https://cdn.bootcss.com/bootstrap/3.3.7/css/bootstrap.css" />
+    <link rel="stylesheet" type="text/css" href="../css/style.css" />
 </head>
 <body>
-其它组件 整理中...
+<div class="subWrapper">
+    <h2>math.js<small>广泛的数学库</small></h2>
+    <h3>起步</h3>
+    <p>
+        Math.js是JavaScript和Node.js的一个广泛的数学库。它具有灵活的表达式解析器，支持符号计算，
+        附带大量内置函数和常量，并提供了一个集成解决方案，可处理不同的数据类型.
+        <strong>与JavaScript内置的Math库兼容。</strong>
+    </p>
+    <p>Math.js可以在浏览器中作为常规JavaScript文件加载，使用全局变量math在加载后访问该库：</p>
+    <pre>&lt;!DOCTYPE HTML&gt;
+&lt;html&gt;
+    &lt;head&gt;
+        &lt;script src="math.js" type="text/javascript"&gt;&lt;/script&gt;
+    &lt;/head&gt;
+    &lt;body&gt;
+        &lt;script type="text/javascript"&gt;
+            <span class="text-primary">//使用 math.js </span>
+            math.sqrt(-4); // 2i
+        &lt;/script&gt;
+    &lt;/body&gt;
+&lt;/html&gt;</pre>
+    <p>也可以使用require.js 来加载math.js</p>
+
+    <h3>参考网址</h3>
+    <p>官方网站：<a href="http://mathjs.org" target="_blank">http://mathjs.org</a></p>
+
+
+    <h2>Moment.js<small>日期处理类库</small></h2>
+    <h3>起步</h3>
+    <strong>兼容Windows 7上的IE8，IE9，Windows XP上的稳定Chrome，Mac上的Safari 10.8以及Linux上稳定的Firefox。</strong>
+    <p>Moment.js可以在浏览器中作为常规JavaScript文件加载</p>
+    <pre>&lt;script src="moment.js"&gt;&lt;/script&gt;
+&lt;script&gt;
+    moment().format();
+&lt;/script&gt;</pre>
+    <p>也可以做使用require.js 来加载</p>
+    <pre>require.config({
+    paths: {
+        "moment": "path/to/moment",
+    }
+});
+define(["<span class="text-primary">moment</span>"], function (moment) {
+    moment().format();
+});</pre>
+    <p><strong>获取日期</strong></p>
+    <pre>moment().format();<span class="text-primary">//当前时间，例：2018-04-04T15:25:52+08:00</span>
+moment().format("MM/DD/YYYY");<span class="text-primary">//修改时间格式：04/04/2018</span>
+moment().format('YYYY-MM-DD HH:mm:ss');<span class="text-primary">//2018-04-04 15:37:20</span>
+moment().format('dddd');<span class="text-primary">//Wednesday</span>
+moment().format('d');<span class="text-primary">3</span>
+<span>......</span></pre>
+
+    <h3>参考网址</h3>
+    <p>官方网站：<a href="http://momentjs.com" target="_blank">http://momentjs.com</a></p>
+    <p>中文文档：<a href="http://momentjs.cn/" target="_blank">http://momentjs.cn/</a></p>
+
+
+
+    <h2>PubSubJS<small>基于发布/订阅设计模式的JavaScript通信库</small></h2>
+    <h3>起步</h3>
+    <p>
+        PubSubJS具有同步解耦，因此主题是异步发布的。这有助于保持程序的可预测性，因为消费者在处理主题时不会
+        阻止主题的发起者。PubSubJS旨在用于单个进程内，并且不适用于多进程应用程序（如Node.js -具有多个子进
+        程的群集）。
+    </p>
+    <pre><span class="text-primary">// 创建一个函数来订阅主题</span>
+var mySubscriber = function (msg, data) {
+    console.log( msg, data );
+};
+
+<span class="text-primary">// 将函数添加到特定主题的订阅方列表中。</span>
+<span class="text-primary">// 我们保留返回的标记，以便能够取消订阅</span>
+<span class="text-primary">// 之后的主题</span>
+var token = PubSub.subscribe('MY TOPIC', mySubscriber);
+
+<span class="text-primary">// 异步发布主题</span>
+PubSub.publish('MY TOPIC', 'hello world!');
+
+<span class="text-primary">// 同步发布主题，在某些环境中速度更快，</span>
+<span class="text-primary">// 但是当一个主题触发新的主题时会变得混乱</span>
+PubSub.publishSync('MY TOPIC', 'hello world!');</pre>
+    <p><strong>取消订阅</strong></p>
+    <pre>var mySubscriber = function (msg, data) {
+    console.log(msg, data);
+};
+var token = PubSub.subscribe('MY TOPIC', mySubscriber);
+PubSub.unsubscribe(token);</pre>
+
+    <h3>参考网址</h3>
+    <p>官方网站：<a href="https://github.com/mroderick/PubSubJS " target="_blank">https://github.com/mroderick/PubSubJS </a></p>
+
+    <h2>markdown-it<small>Markdown格式解析器</small></h2>
+    <h3>起步</h3>
+    <p>
+        Markdown是Aaron Swartz 跟John Gruber共同设计的排版语言。Markdown 的目标是实现「易读易写」。
+        markdown-it是Markdown格式解析器。
+    </p>
+    <h3>参考网址</h3>
+    <p>官方网站：<a href="https://github.com//markdown-it/markdown-it " target="_blank">https://github.com//markdown-it/markdown-it</a></p>
+
+</div>
 </body>
 </html>
