@@ -2,9 +2,116 @@
 <html lang="en">
 <head>
     <meta charset="UTF-8">
-    <title>Title</title>
+    <title>handsontable</title>
+    <link rel="stylesheet" type="text/css" href="https://cdn.bootcss.com/bootstrap/3.3.7/css/bootstrap.css" />
+    <link rel="stylesheet" type="text/css" href="../css/style.css" />
 </head>
 <body>
-handsontable 整理中...
+<div class="subWrapper">
+    <h2>handsontable<small>JavaScript编写的电子表格组件</small></h2>
+    <h3>起步</h3>
+    <p>
+        Handsontable是一个用JavaScript编写的电子表格组件，不受任何外部框架的限制。它可以很容易地修改或扩展
+        自定义插件。Handsontable还绑定到使用JSON格式的任何源并处理大量数据。您可以轻松执行所有 CRUD操作，
+        并为最终用户提供类似Excel的体验。
+    </p>
+    <p><strong>IE:9,10,11;；火狐50+；谷歌56+</strong></p>
+    <p>在使用前，我们先安装handsontable，可以使用npm，输入一下命令：</p>
+    <pre>npm install handsontable</pre>
+    <p>在你要使用handsontable的HTML文件中插入以下代码：</p>
+    <pre>&lt;script src="/dist/handsontable.full.js"&gt;&lt;/script&gt;
+&lt;link rel="stylesheet" media="screen" href="/dist/handsontable.full.css"&gt;</pre>
+
+    <h3>重点</h3>
+    <h4 >初始化一个hansontable</h4>
+    <pre><span class="text-primary">//添加一个&lt;div&gt;将变成电子表格的空元素。让我们给这个元素一个ID。</span>
+&lt;div id="<span class="text-danger">example</span>"&gt;&lt;/div&gt;
+<span class="text-primary">//初始化</span>
+var data = [
+  ["", "Ford", "Tesla", "Toyota", "Honda"],
+  ["2017", 10, 11, 12, 13],
+  ["2018", 20, 11, 14, 13],
+  ["2019", 30, 15, 12, 13]
+];
+
+var container = document.getElementById('<span class="text-danger">example</span>');
+var hot = new Handsontable(container, {
+  data: data,
+  rowHeaders: true,
+  colHeaders: true
+});</pre>
+    <p>数据绑定：</p>
+    <pre>  var data1 = [
+      ['', 'Tesla', 'Nissan', 'Toyota', 'Honda', 'Mazda', 'Ford'],
+      ['2017', 10, 11, 12, 13, 15, 16],
+      ['2018', 10, 11, 12, 13, 15, 16],
+      ['2019', 10, 11, 12, 13, 15, 16],
+      ['2020', 10, 11, 12, 13, 15, 16],
+      ['2021', 10, 11, 12, 13, 15, 16]
+    ],
+    var container1 = document.getElementById('example1'),
+    var settings1 = {
+      data: data1
+    },
+   var hot1;
+
+  hot1 = new Handsontable(container1, settings1);
+  data1[0][1] = 'Ford'; // 修改 "Tesla" 为 "Ford" programmatically
+  hot1.render();
+</pre>
+
+    <h4>常用方法</h4>
+    <dl>
+        <dt>1.addHookOnce （键，回调）</dt>
+        <dd>
+            <p>将侦听器添加到指定的钩子名称,添加只使用一次的方法，用完后自动删除</p>
+            <pre>hot.addHookOnce('beforeInit', myCallback);</pre>
+        </dd>
+
+        <dt>2.alter（action，index，amount，source，keepEmptyRows）</dt>
+        <dd>
+            <p>允许通过插入/删除行或插入/删除列来更改表结构:</p>
+            <p>在给定的行上方插入新行index。如果索引是null或undefined，则新行将
+                在最后一行之后添加。</p>
+            <pre>var hot = new Handsontable(document.getElementById('example'));
+hot.alter('insert_row', 10);</pre>
+            <p>删除给定的行index/列index。</p>
+            <pre>var hot = new Handsontable(document.getElementById('example'));
+<span class="text-primary">//删除指定行</span>
+hot.alter('remove_row', 10);
+<span class="text-primary">//删除指定列</span>
+hot.alter('remove_col', 10);</pre>
+        </dd>
+
+        <dt>3.clear()</dt>
+        <dd>清空表格数据</dd>
+        <br>
+        <dt>4.getCell （row,col,topmost）</dt>
+        <dd>根据行列索引，获取一个被渲染的单元格，如果该单元格未被渲染则返回null</dd>
+        <br>
+        <dt>5.getCellEditor(row,col)</dt>
+        <dd>通过提供的参数row和col参数返回单元格编辑器。</dd>
+        <br>
+        <dt>6.getCellMetaAtRow（row）</dt>
+        <dd>根据索引从单元元数组中返回一行。</dd>
+        <br>
+        <dt>7.getColWidth（col）</dt>
+        <dd>返回请求列的宽度。</dd>
+        <br>
+        <dt>8.getData(row1,col1,row2,col2)</dt>
+        <dd>获取指定范围的单元格的数据</dd>
+        <br>
+        <dt>9.getRowHeight（row）</dt>
+        <dd>返回请求行的宽度。</dd>
+        <br>
+        <dt>10.getSelected（）</dt>
+        <dd>以数组形式返回当前选定单元格的索引[startRow, startCol, endRow, endCol]。
+            开始行和开始列是活动单元格的坐标（开始选择的位置）。</dd>
+    </dl>
+
+    <h3>参考网址</h3>
+    <p>中文文档：<a href="https://docs.handsontable.com/0.34.4" target="_blank">https://docs.handsontable.com/0.34.4</a></p>
+    <p>官方文档：<a href="https://handsontable.com" target="_blank">https://handsontable.com</a></p>
+</div>
 </body>
 </html>
