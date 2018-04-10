@@ -1,0 +1,157 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+    <link rel="stylesheet" type="text/css" href="https://cdn.bootcss.com/bootstrap/3.3.7/css/bootstrap.css" />
+    <link rel="stylesheet" type="text/css" href="../css/style.css" />
+</head>
+<body>
+<div class="subWrapper">
+    <h2>webpack <small>前端资源加载/打包工具</small></h2>
+    <h3>起步</h3>
+    <p>webpack是类似于Grunt和Gulp的前端打包工具，但是能做的事情更多，能够实现代码分割、按需加载。它根据模块的依赖关系进行静态分析，然后将这些模块按照指定的规则生成对应的静态资源。另外，webpack提供的loader可以将sass、less、coffee等多种静态资源转换为一种静态资源，本文档暂未提及，后续用到的话再行补充。</p>
+    <p>写这篇文章的时候最新版本是<mark>4.5.0</mark>，所以下面的内容是在此版本下实验的</p>
+    <h3>重点</h3>
+    <h4 class="text-primary">1.webpack的使用（版本4.5.0）</h4>
+    <p>1.安装nodejs</p>
+    <p>官网：<a href="https://nodejs.org/en/" target="_Blank">https://nodejs.org/en/</a></p>
+    <p>2.打开命令行，新建一个文件夹</p>
+    <p><code>$ mkdir webpack-app</code></p>
+    <p>3.进入这个文件夹</p>
+    <p><code>$ cd webpack-app</code></p>
+    <p>4.初始化项目</p>
+    <p><code>$ npm init</code></p>
+    <p>5.安装webpack</p>
+    <p><code>$ npm install webpack --save-dev</code></p>
+    <p>注：--save-dev的作用是省掉手动将他们添加到模块配置文件package.json中的依赖里</p>
+    <p><span style="visibility: hidden">注：</span>本地安装运行webpack命令的时候不能识别，所以还需要全局安装一遍，<code>$ npm install webpack -g</code></p>
+    <p>6.新建一个hello.js文件</p>
+    <p>7.使用webpack打包这个js文件</p>
+    <p>基本用法是 <code>$ webpack hello.js -o bundle.js</code>，webpack后接需要打包的文件名和打包之后的文件名。</p>
+    <p>但是会报错缺少webpack-cli，webpack3.0及之前的版本不会报这个问题，并且命令里不需要<code>-o</code></p>
+    <p>先yes本文件夹中安装，之后再 <code>npm install webpack-cli -g</code>全局安装</p>
+    <p>8.新建一个index.html文件引入bundle.js，打开页面后可以执行与hello.js相同的内容，打包成功</p>
+
+    <h4 class="text-primary">2.打包css文件</h4>
+    <p>打包css文件需要安装css-loader和style-loader</p>
+    <p>css-loader是使得webpack可以处理.css文件，style-loader是可以把处理完的.css文件新建一个style标签插入到html的header标签中。</p>
+    <p><code>$ npm install css-loader style-loader --save-dev</code></p>
+    <p>然后在js中使用require引用</p>
+    <pre>require("style-loader!css-loader!./style.css");</pre>
+    <p>或者使用命令行</p>
+    <p><code>$ webpack hello.js bundle.js --module-bind 'css=style-loader!css-loader' --watch</code></p>
+
+    <h4 class="text-primary">3.webpack配置文件</h4>
+    <p>webpack的配置文件放在根目录下，默认文件名是webpack.config.js</p>
+    <p>基本用法：</p>
+    <pre>
+module.exports = {
+    entry: __dirname + '/src/js/hello.js',
+    output:{
+        path: __dirname +'/dist/js',
+        filename: 'bundle.js'
+    }
+    module: {
+        loaders: [
+            { test: /\.css$/, loader: "style-loader!css-loader" }
+        ]
+    }
+};
+    </pre>
+    <p>enter是入口，即需要打包的文件；output是出口，配置了打包完成后文件的名称和位置；module中loaders用来判断对css文件处理。</p>
+    <p>之后直接 <code>webpack</code>命令即可生成 bundle.js 文件</p>
+    <p>webpack 命令执行后，会默认载入当前目录的 webpack.config.js 文件。</p>
+    <p>如果默认文件名不叫webpack.config.js，则需要指定配置文件 <code>webpack --config webpack.somename.js</code></p>
+
+    <h4 class="text-primary">4.打包命令也可以配置在package.json文件中</h4>
+    <pre>
+"scripts": {
+
+    "webpack": "webpack --config webpack.config.js"
+},
+    </pre>
+    <p>命令：<code>npm run webpack</code></p>
+
+    <h4 class="text-primary">5.entry和output</h4>
+    <p>如果需要一次打包多个不相关的js文件，entry的值可以是一个对象</p>
+    <pre>
+entry：{
+	main:'./src/script/main.js',
+	a:'./src/script/a.js',
+	b:'./src/script/b.js',
+	c:'./src/script/c.js',
+}
+    </pre>
+    <p>然后output的filename需要给特征值，不然打包出的文件名相同会被覆盖</p>
+    <p>[name]代表文件名称，即entry中的key，</p>
+    <p>[hash]打包操作的哈希值，</p>
+    <p>[chunkhash]每个文件的哈希值，可以当做这个文件的版本号</p>
+    <p>这些值可以使用“-”来拼接</p>
+    <p>例如：</p>
+    <pre>
+output:{
+    path: __dirname +'/dist/js',
+    filename: '[name]-[chunkhash].js'
+}
+    </pre>
+
+    <h4 class="text-primary">6.html-webpack-plugin自动生成html文件</h4>
+    <p>网址：<a href="https://www.npmjs.com/package/html-webpack-plugin" target="_Blank">https://www.npmjs.com/package/html-webpack-plugin</a></p>
+    <p>首先安装html-webpack-plugin插件</p>
+    <p><code>npm install html-webpack-plugin --save-dev</code></p>
+    <p>webpack.config.js中引入此插件</p>
+    <pre>var htmlWebpackPlugin = require('html-webpack-plugin');</pre>
+    <p>使用方法：</p>
+    <pre>
+module.exports = {
+	plugins: [
+		new htmlWebpackPlugin({
+			filename:'index.html',//文件名
+			template:'index.html',//模板，根目录下
+			inject:'head',//用来指定script标签插入的位置，默认body，
+			title:'webpack is good',
+			chunks:[],//指定引入的js
+			excludeChunks:[],//指定排除引入的js
+		})
+	]
+}
+    </pre>
+    <p>生成的html文件放在output的path路径下，但是我们希望html文件放在js文件夹外面，可以这样处理</p>
+    <p>打包js的路径写在filename中，即给path添加一个根路径__dirname +'/dist'，filename添加一个相对路径‘js/bundle.js’</p>
+    <pre>
+output:{
+    path: __dirname + '/dist',
+    filename: 'js/[name]-[chunkhash].js'
+}
+    </pre>
+    <p>模板文件中可以使用 <code><%= htmlWebpackPlugin.options.title%></code>  来获取配置文件里的信息</p>
+    <p>html模板中遍历htmlWebpackPlugin</p>
+    <pre>
+<% for (var key in htmlWebpackPlugin){ %>
+	<%= key %>
+<% } %>
+    </pre>
+
+    <h4 class="text-primary">7.拓展：打包html时js以内联方式引入，免去http请求</h4>
+    <p>https://github.com/jantimon/html-webpack-plugin/blob/master/examples/inline/template.jade</p>
+
+    <h3>参考网址</h3>
+    <p>官方网站：<a href="https://webpack.js.org/" target="_Blank">https://webpack.js.org/</a></p>
+    <p>中文网：<a href="https://webpack-china.org/" target="_Blank">https://webpack-china.org/</a></p>
+    <p>测试demo：<a href="https://github.com/GaiaBing/webpackDemo" target="_Blank">https://github.com/GaiaBing/webpackDemo</a></p>
+
+    <h3>常见问题整理</h3>
+    <dl>
+        <dt>1.</dt>
+        <dd>
+
+        </dd>
+        <dt>2.</dt>
+        <dd>
+
+        </dd>
+    </dl>
+</div>
+</body>
+</html>
