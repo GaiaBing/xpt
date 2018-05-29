@@ -298,6 +298,45 @@
         <dd>
             <p>解决办法：去掉tabindex="-1"</p>
         </dd>
+        <dt>3.弹出框中允许拖动</dt>
+        <dd>
+            <p>解决办法：使用jquery-ui</p>
+<pre>
+$(document).on("show.bs.modal", ".modal", function(){
+    $(this).draggable({
+        handle: ".modal-header"   // 只能点击头部拖动
+		cursor: 'move',
+    });
+    $(this).css("overflow", "hidden"); // 防止出现滚动条，出现的话，你会把滚动条一起拖着走的
+});
+</pre>
+			<p>但是弹出框可以拖出边界，出现bug，为此可以修改bootstrap的源文件，让弹出框居中显示，然后把拖动元素设置为.modal-dialog</p>
+			<p>在bootstrap.js或bootstrap.min.js文件中找到Modal.prototype.show方法。在that.$element.addClass('in').attr('aria-hidden', false)代码前加入下面这段代码。</p>
+<pre>
+that.$element.children().eq(0).css("position", "absolute").css({  
+  "margin": "0px",  
+  "top": function () {  
+	  return (that.$element.height() - that.$element.children().eq(0).height() - 40) / 2 + "px";  
+  },  
+  "left": function () {  
+	  return (that.$element.width() - that.$element.children().eq(0).width()) / 2 + "px";  
+  }  
+}); 
+</pre>
+<pre>
+$(document).on("shown.bs.modal", ".modal", function(){
+	var dialog = $(this).find(".modal-dialog");
+	dialog.draggable({
+		handle: ".modal-header",   // 只能点击头部拖动
+		cursor: 'move',
+		refreshPositions: false,
+		scroll: false,
+		containment: "parent"
+	});
+	$(this).css("overflow", "hidden"); // 防止出现滚动条，出现的话，你会把滚动条一起拖着走的
+});
+</pre>
+        </dd>
     </dl>
 
     <h3>CDN</h3>
